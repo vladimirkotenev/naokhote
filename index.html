@@ -176,7 +176,6 @@ html:not([data-lang="en"]) [data-l="en"] { display: none !important; }
 /* Первый экран */
 .hero { padding: clamp(48px, 6vw, 86px) 0 clamp(48px, 4.5vw, 64px); }
 .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: center; }
-.hero .label { margin-bottom: 30px; }
 .tagline {
   display: flex;
   align-items: center;
@@ -187,7 +186,6 @@ html:not([data-lang="en"]) [data-l="en"] { display: none !important; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.tagline::before { content: ""; flex: 0 0 70px; height: 1px; background: currentColor; opacity: .55; }
 .facts {
   margin-top: 26px;
   font: 400 11px/2 var(--sans);
@@ -546,12 +544,11 @@ html:not(.js) .burger { display: none !important; }
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="label"><span data-l="ru">Сан-Миниато · 2026</span><span data-l="en">San Miniato · 2026</span></div>
       <h1 class="h1" data-l="ru">Тоска<br><em>по</em> Тоскане</h1>
       <h1 class="h1" data-l="en">Longing<br><em>for</em> Tuscany</h1>
       <div class="tagline"><span data-l="ru">Охота на белый трюфель</span><span data-l="en">White truffle hunting</span></div>
-      <div class="facts" data-l="ru">20–23 ноября 2026 · Сан-Миниато · до 15 гостей · 1 780 €</div>
-      <div class="facts" data-l="en">20–23 November 2026 · San Miniato · up to 15 guests · €1,780</div>
+      <div class="facts" data-l="ru">20–23 ноября 2026 · Сан-Миниато</div>
+      <div class="facts" data-l="en">20–23 November 2026 · San Miniato</div>
     </div>
     <figure>
       <img class="cover hero-img" src="img/sanminiato-duomo.avif" width="1000" height="500" loading="eager" fetchpriority="high" decoding="async" data-eager="high" sizes="(max-width: 860px) 100vw, 575px"
@@ -696,8 +693,8 @@ html:not(.js) .burger { display: none !important; }
         <h2 class="h2" data-l="ru">Охота на трюфель в месте с историей</h2>
         <h2 class="h2" data-l="en">A truffle hunt in a place with history</h2>
         <div class="tags">
-          <span class="tag"><span data-l="ru">Охота I · трюфель</span><span data-l="en">Hunt I · truffle</span></span>
-          <span class="tag"><span data-l="ru">Охота II · артефакты фестиваля</span><span data-l="en">Hunt II · festival artefacts</span></span>
+          <span class="tag"><span data-l="ru">трюфель</span><span data-l="en">truffle</span></span>
+          <span class="tag"><span data-l="ru">артефакты фестиваля</span><span data-l="en">festival artefacts</span></span>
         </div>
       </div>
     </header>
@@ -771,7 +768,7 @@ html:not(.js) .burger { display: none !important; }
         <h2 class="h2" data-l="ru">Эпоха Возрождения Сердец</h2>
         <h2 class="h2" data-l="en">The Renaissance of Hearts</h2>
         <div class="tags">
-          <span class="tag"><span data-l="ru">Охота III · Новый Ренессанс</span><span data-l="en">Hunt III · New Renaissance</span></span>
+          <span class="tag"><span data-l="ru">Новый Ренессанс</span><span data-l="en">New Renaissance</span></span>
         </div>
       </div>
     </header>
@@ -827,7 +824,7 @@ html:not(.js) .burger { display: none !important; }
       <div class="ch-num">IV</div>
       <div>
         <div class="label"><span data-l="ru">Глава IV · Понедельник</span><span data-l="en">Chapter IV · Monday</span></div>
-        <h2 class="h2" data-l="ru">Башня, которая не падает. И мы — тоже стоим</h2>
+        <h2 class="h2" data-l="ru">Башня, которая не падает.<br>И мы — тоже стоим</h2>
         <h2 class="h2" data-l="en">The tower that never falls. Neither do we</h2>
       </div>
     </header>
