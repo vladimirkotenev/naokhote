@@ -175,7 +175,9 @@ html:not([data-lang="en"]) [data-l="en"] { display: none !important; }
 
 /* Первый экран */
 .hero { padding: clamp(48px, 6vw, 86px) 0 clamp(48px, 4.5vw, 64px); }
-.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: center; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--gap); align-items: center; }
+/* Оптическое выравнивание: у «Т» пустой левый край и тонкая перекладина, без сдвига заголовок кажется правее подзаголовков */
+.h1[data-l="ru"] { margin-left: -.05em; }
 .tagline {
   display: flex;
   align-items: center;
@@ -193,7 +195,7 @@ html:not([data-lang="en"]) [data-l="en"] { display: none !important; }
   text-transform: uppercase;
   color: var(--muted);
 }
-.hero-img { aspect-ratio: 2 / 1; }
+.hero-img { aspect-ratio: 16 / 10; }
 .rule { max-width: var(--max); height: 1px; margin: 0 auto; background: var(--rule); }
 
 /* Вступление */
@@ -545,15 +547,15 @@ html:not(.js) .burger { display: none !important; }
 <section class="hero">
   <div class="wrap">
     <div>
-      <h1 class="h1" data-l="ru">Тоска<br><em>по</em> Тоскане</h1>
+      <h1 class="h1" data-l="ru">Тоска <em>по</em><br>Тоскане</h1>
       <h1 class="h1" data-l="en">Longing<br><em>for</em> Tuscany</h1>
       <div class="tagline"><span data-l="ru">Охота на белый трюфель</span><span data-l="en">White truffle hunting</span></div>
       <div class="facts" data-l="ru">20–23 ноября 2026 · Сан-Миниато</div>
       <div class="facts" data-l="en">20–23 November 2026 · San Miniato</div>
     </div>
     <figure>
-      <img class="cover hero-img" src="img/sanminiato-duomo.avif" width="1000" height="500" loading="eager" fetchpriority="high" decoding="async" data-eager="high" sizes="(max-width: 860px) 100vw, 575px"
-        alt="Сан-Миниато: собор и башня над тосканскими холмами" data-alt-en="San Miniato: the cathedral and tower above the Tuscan hills">
+      <img class="cover hero-img" src="img/tuscany-hills.avif" width="2000" height="1250" srcset="img/tuscany-hills-800.avif 800w, img/tuscany-hills-1200.avif 1200w, img/tuscany-hills.avif 2000w" loading="eager" fetchpriority="high" decoding="async" data-eager="high" sizes="(max-width: 860px) 100vw, 630px"
+        alt="Тосканские холмы: дом среди кипарисов и дорога через поля" data-alt-en="Tuscan hills: a farmhouse among cypresses and a road through the fields">
     </figure>
   </div>
 </section>
@@ -563,8 +565,8 @@ html:not(.js) .burger { display: none !important; }
 <section class="intro">
   <div class="wrap split">
     <figure>
-      <img class="cover r-4x5" src="img/hilltown-towers.avif" width="1080" height="1440" srcset="img/hilltown-towers-800.avif 800w, img/hilltown-towers.avif 1080w" loading="eager" decoding="async" data-eager sizes="(max-width: 860px) 100vw, 575px"
-        alt="Тосканский городок с башнями на холме" data-alt-en="A Tuscan hill town with medieval towers">
+      <img class="cover r-4x5" src="img/sanminiato-tower.avif" width="1080" height="1350" srcset="img/sanminiato-tower-800.avif 800w, img/sanminiato-tower.avif 1080w" loading="eager" decoding="async" data-eager sizes="(max-width: 860px) 100vw, 575px"
+        alt="Сан-Миниато: колокольня собора над холмами в утреннем тумане" data-alt-en="San Miniato: the cathedral bell tower above the hills in morning mist">
     </figure>
     <div>
       <div class="label"><span data-l="ru">О поездке</span><span data-l="en">The journey</span></div>
@@ -831,8 +833,8 @@ html:not(.js) .burger { display: none !important; }
     </header>
     <div class="split">
       <div>
-        <p class="quote" data-l="ru">Не нужно быть идеальным, чтобы быть прекрасным</p>
-        <p class="quote" data-l="en">You don’t have to be perfect to be beautiful</p>
+        <p class="quote" data-l="ru">Не нужно быть<br>идеальным, чтобы<br>быть прекрасным</p>
+        <p class="quote" data-l="en">You don’t have to be<br>perfect to be beautiful</p>
       </div>
       <div>
         <p data-l="ru">Последний завтрак всегда самый медленный. Никто не хочет вставать из-за стола первым.</p>
