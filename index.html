@@ -546,14 +546,14 @@ html:not(.js) .burger { display: none !important; }
 
 <section class="hero">
   <div class="wrap">
-    <div>
+    <div data-reveal>
       <h1 class="h1" data-l="ru">Тоска <em>по</em><br>Тоскане</h1>
       <h1 class="h1" data-l="en">Longing<br><em>for</em> Tuscany</h1>
       <div class="tagline"><span data-l="ru">Охота на белый трюфель</span><span data-l="en">White truffle hunting</span></div>
       <div class="facts" data-l="ru">20–23 ноября 2026 · Сан-Миниато</div>
       <div class="facts" data-l="en">20–23 November 2026 · San Miniato</div>
     </div>
-    <figure>
+    <figure data-reveal>
       <img class="cover hero-img" src="img/tuscany-hills.avif" width="2000" height="1250" srcset="img/tuscany-hills-800.avif 800w, img/tuscany-hills-1200.avif 1200w, img/tuscany-hills.avif 2000w" loading="eager" fetchpriority="high" decoding="async" data-eager="high" sizes="(max-width: 860px) 100vw, 630px"
         alt="Тосканские холмы: дом среди кипарисов и дорога через поля" data-alt-en="Tuscan hills: a farmhouse among cypresses and a road through the fields">
     </figure>
@@ -564,11 +564,11 @@ html:not(.js) .burger { display: none !important; }
 
 <section class="intro">
   <div class="wrap split">
-    <figure>
+    <figure data-reveal>
       <img class="cover r-4x5" src="img/sanminiato-tower.avif" width="1080" height="1350" srcset="img/sanminiato-tower-800.avif 800w, img/sanminiato-tower.avif 1080w" loading="eager" decoding="async" data-eager sizes="(max-width: 860px) 100vw, 575px"
         alt="Сан-Миниато: колокольня собора над холмами в утреннем тумане" data-alt-en="San Miniato: the cathedral bell tower above the hills in morning mist">
     </figure>
-    <div>
+    <div data-reveal>
       <div class="label"><span data-l="ru">О поездке</span><span data-l="en">The journey</span></div>
       <p class="h3" data-l="ru">Четыре дня в Тоскане в сезон белого трюфеля</p>
       <p class="h3" data-l="en">Four days in Tuscany in white truffle season</p>
@@ -977,21 +977,28 @@ html:not(.js) .burger { display: none !important; }
   var hasIO = 'IntersectionObserver' in window;
 
   // Появление блоков. Соседи из одной группы идут с шагом 120 мс (не больше трёх шагов).
+  // Блоки первого экрана помечены data-reveal прямо в разметке: так они скрыты с первой отрисовки,
+  // иначе браузер успевает показать их до этого скрипта и анимации не видно.
   var groups = [
     '.hero .wrap > *', '.intro .split > *', '.hunts .pair > figure', '.hunts .wrap > div > .label', '.hunt-list li',
     '.route .wrap > .label', '.stops li', '.ch-head', '.chapter .wrap > .split > *', '.chapter .wrap > figure',
     '.g-7-5 > *', '.g-5-7 > *', '.fest', '.narrow', '.villa-head', '.strip',
     '.evening .split > *', '.details .split > *', '.foot-grid > *', '.foot-bottom'
   ];
+  var marked = [];
   groups.forEach(function (sel) {
     document.querySelectorAll(sel).forEach(function (el) {
-      if (el.hasAttribute('data-reveal')) return;
+      if (marked.indexOf(el) !== -1) return;
+      marked.push(el);
       var i = 0;
       for (var s = el.previousElementSibling; s; s = s.previousElementSibling) if (s.matches(sel)) i++;
       el.setAttribute('data-reveal', '');
       if (i) el.style.setProperty('--rd', Math.min(i, 3) * 120 + 'ms');
     });
   });
+  // Фото башни появляется следом за первым экраном (после фото с шагом 120 мс), не дожидаясь прокрутки.
+  var tower = document.querySelector('.intro .split > figure');
+  if (tower) tower.style.setProperty('--rd', '240ms');
   var revealEls = document.querySelectorAll('[data-reveal]');
   if (reduce || !hasIO) {
     revealEls.forEach(function (el) { el.classList.add('in'); });
@@ -1001,7 +1008,9 @@ html:not(.js) .burger { display: none !important; }
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { threshold: 0.12 });
-    revealEls.forEach(function (el) { io.observe(el); });
+    revealEls.forEach(function (el) { if (el !== tower) io.observe(el); });
+    // Чтение размера фиксирует скрытое состояние, иначе переход не запустится.
+    if (tower) { void tower.offsetWidth; tower.classList.add('in'); }
   }
 
   // Меню для узких экранов: закрывается по пункту, по клику мимо, по Esc и при расширении окна.
